@@ -43,7 +43,7 @@ def top_skills(n: int = 20) -> None:
     print(f"\n{'─'*50}")
     print(f"  Top {n} most-demanded skills (all sources)")
     print(f"{'─'*50}")
-    _conn().execute(f"""
+    _conn().sql(f"""
         SELECT
             skill,
             COUNT(*)                                               AS jobs,
@@ -61,7 +61,7 @@ def skills_in_category(category: str = "data engineer", n: int = 15) -> None:
     print(f"  Top skills in '{category}' postings (top {n})")
     print(f"{'─'*50}")
     pattern = f"%{category.lower()}%"
-    _conn().execute(f"""
+    _conn().sql(f"""
         SELECT
             skill,
             COUNT(*) AS jobs
@@ -70,7 +70,7 @@ def skills_in_category(category: str = "data engineer", n: int = 15) -> None:
         GROUP BY skill
         ORDER BY jobs DESC
         LIMIT {n}
-    """, [pattern, pattern]).show()
+    """, params=[pattern, pattern]).show()
 
 
 def remote_split() -> None:
@@ -78,7 +78,7 @@ def remote_split() -> None:
     print(f"\n{'─'*50}")
     print("  Remote vs On-site split")
     print(f"{'─'*50}")
-    _conn().execute("""
+    _conn().sql("""
         SELECT
             CASE WHEN remote THEN 'Remote' ELSE 'On-site' END   AS work_type,
             COUNT(*)                                             AS jobs,
@@ -94,7 +94,7 @@ def top_companies(n: int = 15) -> None:
     print(f"\n{'─'*50}")
     print(f"  Top {n} hiring companies")
     print(f"{'─'*50}")
-    _conn().execute(f"""
+    _conn().sql(f"""
         SELECT
             company,
             COUNT(*) AS openings
@@ -111,7 +111,7 @@ def weekly_skill_trend(skill: str = "python") -> None:
     print(f"\n{'─'*50}")
     print(f"  Weekly trend for skill: '{skill}'")
     print(f"{'─'*50}")
-    _conn().execute("""
+    _conn().sql("""
         SELECT
             DATE_TRUNC('week', posted_date)::DATE  AS week_start,
             COUNT(*)                               AS job_count
@@ -119,7 +119,7 @@ def weekly_skill_trend(skill: str = "python") -> None:
         WHERE skill = ?
         GROUP BY week_start
         ORDER BY week_start
-    """, [skill.lower()]).show()
+    """, params=[skill.lower()]).show()
 
 
 def skill_cooccurrence(n: int = 20) -> None:
@@ -127,7 +127,7 @@ def skill_cooccurrence(n: int = 20) -> None:
     print(f"\n{'─'*50}")
     print(f"  Top {n} skill co-occurrence pairs")
     print(f"{'─'*50}")
-    _conn().execute(f"""
+    _conn().sql(f"""
         SELECT
             a.skill  AS skill_a,
             b.skill  AS skill_b,
@@ -147,7 +147,7 @@ def source_breakdown() -> None:
     print(f"\n{'─'*50}")
     print("  Postings per source")
     print(f"{'─'*50}")
-    _conn().execute("""
+    _conn().sql("""
         SELECT
             source,
             COUNT(*)                                              AS jobs,
@@ -167,7 +167,7 @@ def salary_overview() -> None:
     if not Path(gold_path).exists():
         print("  Run the pipeline to generate gold/salary_samples.parquet")
         return
-    duckdb.execute(f"SELECT * FROM read_parquet('{gold_path}') LIMIT 30").show()
+    duckdb.sql(f"SELECT * FROM read_parquet('{gold_path}') LIMIT 30").show()
 
 
 # ── Main ──────────────────────────────────────────────────────────────────────

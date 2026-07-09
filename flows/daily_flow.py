@@ -123,7 +123,11 @@ def daily_job_pipeline() -> None:
     s = task_silver.submit(wait_for=[b_r, b_a, b_w])
 
     # ── Stage 4: Gold (waits for silver) ─────────────────────────────────────
-    task_gold.submit(wait_for=[s])
+    g = task_gold.submit(wait_for=[s])
+
+    # Block until the whole chain resolves — otherwise Prefect cancels any
+    # task runs still in flight the instant this flow function returns.
+    g.result()
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────
