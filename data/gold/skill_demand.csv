@@ -1,0 +1,62 @@
+skill,job_count,pct_of_total
+python,43,8.04
+r,32,5.98
+aws,31,5.79
+rest,25,4.67
+typescript,25,4.67
+ci/cd,24,4.49
+docker,24,4.49
+sql,22,4.11
+linux,21,3.93
+azure,21,3.93
+kubernetes,21,3.93
+devops,19,3.55
+javascript,18,3.36
+data science,18,3.36
+java,15,2.8
+machine learning,14,2.62
+git,13,2.43
+llm,12,2.24
+postgresql,11,2.06
+rag,9,1.68
+terraform,9,1.68
+gcp,8,1.5
+data engineering,7,1.31
+kafka,7,1.31
+grafana,6,1.12
+mlops,6,1.12
+github actions,5,0.93
+bash,5,0.93
+prometheus,5,0.93
+jenkins,4,0.75
+golang,4,0.75
+graphql,3,0.56
+airflow,3,0.56
+rust,3,0.56
+dbt,3,0.56
+pytorch,3,0.56
+etl,2,0.37
+tensorflow,2,0.37
+scala,2,0.37
+power bi,2,0.37
+databricks,2,0.37
+nlp,2,0.37
+mysql,2,0.37
+redis,2,0.37
+pandas,2,0.37
+mongodb,2,0.37
+deep learning,2,0.37
+scikit-learn,1,0.19
+iceberg,1,0.19
+redshift,1,0.19
+snowflake,1,0.19
+protobuf,1,0.19
+bigquery,1,0.19
+tableau,1,0.19
+ansible,1,0.19
+elasticsearch,1,0.19
+numpy,1,0.19
+spark,1,0.19
+parquet,1,0.19
+xgboost,1,0.19
+metabase,1,0.19
