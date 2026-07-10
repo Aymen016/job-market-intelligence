@@ -26,7 +26,8 @@ dashboard, and no cloud account required.
 
 
 
-Uploading Dashboard for job-market-intelligence.mp4…
+https://github.com/user-attachments/assets/11aba5f1-2c01-4565-9f5c-772a01213b8d
+
 
 
 ---
