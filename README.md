@@ -24,7 +24,10 @@ dashboard, and no cloud account required.
   as a markdown image/link and GitHub renders it as an inline video player.
 -->
 
-*Video coming soon.*
+
+
+Uploading Dashboard for job-market-intelligence.mp4…
+
 
 ---
 
