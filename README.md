@@ -64,6 +64,9 @@ job-market-observatory/
 │   └── daily_flow.py          ← Prefect flow + tasks + schedule
 ├── analysis/
 │   └── queries.py             ← ad-hoc DuckDB query functions
+├── backend/
+│   └── main.py                ← FastAPI — serves gold/silver as JSON
+├── frontend/                  ← Vite + React dashboard (npm install && npm run dev)
 ├── data/                      ← auto-created; not committed to git
 │   ├── bronze/
 │   ├── silver/
@@ -107,6 +110,26 @@ python flows/daily_flow.py --serve
 ```
 
 This keeps the process alive and re-runs the flow every day.  Stop it with `Ctrl+C`.
+
+---
+
+## Web dashboard
+
+A FastAPI backend + React (Vite) frontend visualize the gold mart tables in the browser.
+
+```bash
+# Terminal 1 — API (reads data/gold + data/silver via DuckDB)
+python -m uvicorn backend.main:app --port 8000
+
+# Terminal 2 — frontend
+cd frontend
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`. The dashboard shows top skills, remote/on-site split,
+top categories and companies, skill co-occurrence pairs, daily posting volume, and
+disclosed salaries — all read live from whatever the pipeline last produced.
 
 ---
 
