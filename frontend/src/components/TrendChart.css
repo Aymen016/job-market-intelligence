@@ -1,0 +1,106 @@
+.trend-chart {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.trend-chart__svg {
+  width: 100%;
+  height: auto;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.trend-chart__grid {
+  stroke: var(--gridline);
+  stroke-width: 1;
+}
+
+.trend-chart__baseline {
+  stroke: var(--baseline);
+  stroke-width: 1;
+}
+
+.trend-chart__crosshair {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.trend-chart__tick {
+  fill: var(--text-muted);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.trend-chart__empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.trend-chart__tooltip {
+  position: absolute;
+  top: 4px;
+  transform: translateX(-50%);
+  background: var(--text-primary);
+  color: var(--page-bg);
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  white-space: nowrap;
+  z-index: 5;
+}
+
+.trend-chart__tooltip-date {
+  color: var(--surface-2);
+  opacity: 0.75;
+  font-size: 11px;
+  margin-bottom: 2px;
+}
+
+.trend-chart__tooltip-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.trend-chart__tooltip-key {
+  width: 8px;
+  height: 2px;
+  border-radius: 1px;
+  flex: none;
+}
+
+.trend-chart__tooltip-name {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.trend-chart__legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.trend-chart__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+.trend-chart__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
