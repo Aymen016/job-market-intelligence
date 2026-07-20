@@ -1,0 +1,98 @@
+.split-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.split-bar__track {
+  display: flex;
+  height: 22px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+
+.split-bar__segment {
+  position: relative;
+  height: 100%;
+  outline: none;
+  transition: filter 0.12s ease;
+}
+
+.split-bar__segment:first-child {
+  border-radius: 5px 0 0 5px;
+}
+
+.split-bar__segment:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+.split-bar__segment:hover,
+.split-bar__segment:focus-visible {
+  filter: brightness(1.1);
+}
+
+.split-bar__tooltip {
+  position: absolute;
+  left: 0;
+  bottom: calc(100% + 8px);
+  background: var(--text-primary);
+  color: var(--page-bg);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(3px);
+  pointer-events: none;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.split-bar__tooltip strong {
+  font-size: 13px;
+}
+
+.split-bar__tooltip span {
+  color: var(--surface-2);
+  opacity: 0.85;
+}
+
+.split-bar__segment:hover .split-bar__tooltip,
+.split-bar__segment:focus-visible .split-bar__tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.split-bar__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.split-bar__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+}
+
+.split-bar__swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.split-bar__legend-label {
+  color: var(--text-secondary);
+}
+
+.split-bar__legend-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}

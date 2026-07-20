@@ -1,0 +1,87 @@
+.bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.bar-list__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 108px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  border-radius: 6px;
+  outline: none;
+}
+
+.bar-list__label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bar-list__track {
+  height: 16px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.bar-list__fill {
+  height: 100%;
+  border-radius: 0 4px 4px 0;
+  transition: filter 0.12s ease;
+}
+
+.bar-list__row:hover .bar-list__fill,
+.bar-list__row:focus-visible .bar-list__fill {
+  filter: brightness(1.12);
+}
+
+.bar-list__value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 34px;
+  text-align: right;
+}
+
+.bar-list__tooltip {
+  position: absolute;
+  left: 108px;
+  bottom: calc(100% + 6px);
+  background: var(--text-primary);
+  color: var(--page-bg);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(3px);
+  pointer-events: none;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.bar-list__tooltip strong {
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar-list__tooltip span {
+  color: var(--surface-2);
+  opacity: 0.85;
+}
+
+.bar-list__row:hover .bar-list__tooltip,
+.bar-list__row:focus-visible .bar-list__tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
