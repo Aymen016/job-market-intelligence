@@ -15,23 +15,16 @@ dashboard, and no cloud account required.
 
 ## Demo
 
-<!--
-  Add your recording here once it's ready, for example:
-  ![Dashboard demo](docs/demo.gif)
-
-  Or, if you upload the video through a GitHub PR/issue comment, GitHub gives you
-  a hosted https://github.com/<user>/<repo>/assets/... URL — paste that directly
-  as a markdown image/link and GitHub renders it as an inline video player.
--->
-
-
-
-
-
 https://github.com/user-attachments/assets/caa8d9f1-1f96-40de-9eb2-2955b3e9df80
 
+### Screenshots
 
-
+| | |
+|---|---|
+| ![Main page](<Screenshots of Dashboard/Main page.png>) | ![Top skills](<Screenshots of Dashboard/Top skills.png>) |
+| ![Top companies](<Screenshots of Dashboard/Top companies.png>) | ![Top skills by websites](<Screenshots of Dashboard/Top Skills by Websites.png>) |
+| ![Top skills along with companies](<Screenshots of Dashboard/Top Skills along with Companies.png>) | ![Salaries by resources](<Screenshots of Dashboard/Salaries by Resources.png>) |
+| ![Data table](<Screenshots of Dashboard/Data Table.png>) | ![Table](<Screenshots of Dashboard/Table.png>) |
 
 ---
 
