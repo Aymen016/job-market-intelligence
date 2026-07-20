@@ -1,15 +1,33 @@
 # Job Market Observatory
 
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
-![License: MIT](https://img.shields.io/badge/license-MIT-green)
+![TypeScript](https://img.shields.io/badge/frontend-React%20%2B%20TypeScript-61DAFB)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
 ![Prefect](https://img.shields.io/badge/orchestration-Prefect-1857e0)
 ![DuckDB](https://img.shields.io/badge/query%20engine-DuckDB-FFC44C)
-![React](https://img.shields.io/badge/dashboard-React%20%2B%20Vite-61DAFB)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
 
-A self-contained daily pipeline that collects tech job postings from three sources,
-stores every snapshot as Parquet, and answers questions like *"which skills dominate
-data-engineering postings this month?"* — with plain DuckDB SQL, a browsable
-dashboard, and no cloud account required.
+A self-contained daily pipeline that collects tech job postings from three
+sources, stores every snapshot as Parquet, and answers questions like
+*"which skills dominate data-engineering postings this month?"* — with plain
+DuckDB SQL, a live dashboard, and no cloud account required.
+
+---
+
+## Contents
+
+- [Demo](#demo)
+- [Features](#features)
+- [Architecture](#architecture--the-medallion-pattern)
+- [Tech stack](#tech-stack)
+- [Quick start](#quick-start)
+- [API reference](#api-reference)
+- [Project layout](#project-layout)
+- [Querying the data](#querying-the-data)
+- [Data sources](#data-sources)
+- [Skills tracked](#skills-tracked)
+- [Known limitations](#known-limitations)
+- [License](#license)
 
 ---
 
@@ -37,8 +55,9 @@ https://github.com/user-attachments/assets/caa8d9f1-1f96-40de-9eb2-2955b3e9df80
 - **~90 skill keywords** auto-tagged on every posting, with demand rankings and
   co-occurrence pairs computed for free.
 - **Prefect orchestration** — run once, or `--serve` for a self-scheduling daily job.
-- **A web dashboard** (FastAPI + React) that visualizes the gold tables live.
-- Zero infrastructure: everything is local Parquet files queried directly by DuckDB.
+- **A live web dashboard** (FastAPI + React) that visualizes the gold tables in real time.
+- **Zero infrastructure** — everything is local Parquet files queried directly by DuckDB;
+  no database server, no message queue, no cloud account.
 
 ---
 
@@ -90,6 +109,20 @@ split, salary samples, daily volume, skill co-occurrence pairs.
 
 ---
 
+## Tech stack
+
+| Layer | Technology |
+|---|---|
+| Ingestion | Python, `requests`, BeautifulSoup4 |
+| Orchestration | Prefect 3 |
+| Storage / format | Apache Parquet (partitioned, no database) |
+| Query engine | DuckDB (SQL directly over Parquet) |
+| API | FastAPI + Uvicorn |
+| Dashboard | React + TypeScript + Vite |
+| Alternate dashboard | Streamlit + Altair (`app.py`, single-file, deploy-anywhere) |
+
+---
+
 ## Quick start
 
 **Requires Python 3.11+ and Node.js 18+.**
@@ -130,6 +163,37 @@ python -m flows.daily_flow --serve
 
 Keeps the process alive and re-runs the flow every day at 08:00 UTC. Stop it with `Ctrl+C`.
 
+### Alternative: single-file Streamlit dashboard
+
+For a quick look without running the API and frontend separately:
+
+```bash
+streamlit run app.py
+```
+
+Deploys for free on [Streamlit Community Cloud](https://share.streamlit.io) if you
+want a hosted demo link.
+
+---
+
+## API reference
+
+All endpoints are served by `backend/main.py` at `http://localhost:8000` and
+return JSON read live from the gold/silver Parquet files.
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/summary` | Total jobs, source count, % remote, top skill, last ingest date |
+| `GET /api/skill-demand?limit=20` | Top skills by job count and % of total postings |
+| `GET /api/remote-split` | Remote vs. on-site vs. hybrid breakdown |
+| `GET /api/top-categories?limit=15` | Top job categories by posting count |
+| `GET /api/salary-samples?limit=50` | Disclosed salary samples by source |
+| `GET /api/daily-volume` | Postings per day, broken down by source |
+| `GET /api/skill-cooccurrence?limit=20` | Skill pairs that most often appear together |
+| `GET /api/top-companies?limit=15` | Companies with the most open postings |
+| `GET /api/source-breakdown` | Posting count and share per source |
+| `GET /api/skill-trend?skill=python` | Weekly posting trend for a given skill |
+
 ---
 
 ## Project layout
@@ -152,6 +216,7 @@ job-market-observatory/
 ├── backend/
 │   └── main.py                ← FastAPI — serves gold/silver as JSON
 ├── frontend/                  ← Vite + React dashboard
+├── app.py                     ← alternate single-file Streamlit dashboard
 ├── data/                      ← auto-created; not committed to git
 │   ├── bronze/
 │   ├── silver/
