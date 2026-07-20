@@ -26,7 +26,10 @@ dashboard, and no cloud account required.
 
 
 
-https://github.com/user-attachments/assets/11aba5f1-2c01-4565-9f5c-772a01213b8d
+
+
+https://github.com/user-attachments/assets/caa8d9f1-1f96-40de-9eb2-2955b3e9df80
+
 
 
 
